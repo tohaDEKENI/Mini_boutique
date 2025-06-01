@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Boutique</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f3f3;
+      color: #333;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff9800;
+    }
+
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px;
+      flex-wrap: wrap;
+    }
+
+    .product {
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 220px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .product button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .product button:hover {
+      background: #e68900;
+    }
+
+    #panier {
+      margin: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    #contact {
+      margin: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    #contact h2 {
+      margin-bottom: 20px;
+    }
+
+    #contact input,
+    #contact textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #panier button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #panier button:hover {
+      background-color: #45a049;
+    }
+
+
+    #contact button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #contact button:hover {
+      background: #218838;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 22px;
+      color: #444;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img style="border-radius: 20px;" src="image3.jpg" alt="" width="150px">
+    <h1>Mini Boutique</h1>
+    <nav>
+      <a href="#">Accueil</a>
+      <a href="#products">Produits</a>
+      <a href="#panier">Panier</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="products" id="products">
+      <div class="product">
+        <img src="image2.jpg" alt="Produit 1">
+        <h3>Produit 1</h3>
+        <p>20 €</p>
+        <button onclick="ajouterAuPanier('Produit 1', 20)">Ajouter au panier</button>
+      </div>
+      <div class="product">
+        <img src="image1.jpg" alt="Produit 2">
+        <h3>Produit 2</h3>
+        <p>25 €</p>
+        <button onclick="ajouterAuPanier('Produit 2', 25)">Ajouter au panier</button>
+      </div>
+    </section>
+
+    <section id="panier">
+      <h2>🛒 Panier</h2>
+      <ul id="liste-panier"></ul>
+      <p>Total : <span id="total">0</span> €</p>
+      <button onclick="commander()">✅ Commander</button>
+    </section>
+
+    <section id="contact">
+      <h2>📩 Contactez-nous</h2>
+      <form onsubmit="envoyerMessage(event)">
+        <label>Nom :</label>
+        <input type="text" required>
+
+        <label>Email :</label>
+        <input type="email" required>
+
+        <label>Message :</label>
+        <textarea rows="4" required></textarea>
+
+        <button type="submit">Envoyer</button>
+      </form>
+
+      <h3 style="margin-top: 30px;">📱 Suivez-nous :</h3>
+      <div class="social-links">
+        <a href="https://www.instagram.com/toncompte" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://www.tiktok.com/@toncompte" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+        <a href="mailto:ton@email.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <p>&copy; 2025 - Mini Boutique scolaire</p>
+  </footer>
+
+  <script>
+    let panier = [];
+    let total = 0;
+
+    
+    function ajouterAuPanier(nom, prix) {
+      panier.push({ nom, prix });
+      total += prix;
+      afficherPanier();
+    }
+
+    function afficherPanier() {
+      const listePanier = document.getElementById("liste-panier");
+      const totalElement = document.getElementById("total");
+      listePanier.innerHTML = "";
+
+      panier.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nom} - ${item.prix} €`;
+        listePanier.appendChild(li);
+      });
+
+      totalElement.textContent = total;
+    }
+
+    function commander() {
+        if (panier.length === 0) {
+            alert("Votre panier est vide !");
+            return;
+        }
+
+        // Ajoute ici des actions comme passer la commande
+        alert("Commande validée !");
+    }
+
+    
+
+    function envoyerMessage(event) {
+      event.preventDefault();
+      alert("Merci pour votre message ! Nous vous répondrons bientôt.");
+    }
+
+   
+  </script>
+</body>
+</html>
